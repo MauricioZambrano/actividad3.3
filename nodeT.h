@@ -2,8 +2,8 @@ class NodeT{
     public:
         NodeT(int key);
         NodeT(int key, NodeT *left, NodeT *right);  //No se va a requerir
-        int getData(){ return data; }
-        void setData(int key);
+        int getKey(){ return key; }
+        void setKey(int key);
         string getIp() {return ip;}
         void setIp(string ip);
         NodeT *getLeft() { return left;}
@@ -17,11 +17,11 @@ class NodeT{
         NodeT *right;
 };
 
-NodeT::NodeT(int key){
+NodeT::NodeT(int key, string ip){
     this->key = key;
     this->left = nullptr;
     this->right = nullptr;
-    this->string = "";
+    this->ip = "";
 }
 
 NodeT::NodeT(int key, NodeT *left, NodeT *right){
