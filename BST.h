@@ -11,28 +11,9 @@ class BST{
         BST();
         ~BST();
         void add(int data);
-        // bool search(int data);
-        // void remove(int data);
-        // void printPre();
-        // void printIn();
-        // void printPos();
-        // void printLevelByLevel();
-        // int size();
-        // int height();
-        // void visit(int option);
-        // void ancestors(int data);
-        // int whatlevelamI(int data);
+
     private:
         NodeT *root;
-        // void preOrden(NodeT *r);
-        // void inOrden(NodeT *r);
-        // void postOrden(NodeT *r);
-        // void levelByLevel(NodeT *r);
-        // void destruye(NodeT *r);
-        // int howManyChildren(NodeT *r);
-        // int succ(NodeT *r);
-        // int pred(NodeT *r);
-        // int count(NodeT *r);
 };
 
 BST::BST(){
@@ -43,7 +24,7 @@ BST::~BST(){
     destruye(root);
 }
 
-void BST::add(int &key, string ip){
+void BST::add(int key, long ip){
     NodeT *curr = root;
     NodeT *father = nullptr;
     while (curr != nullptr){        //Llegar hasta nullptr a donde se quiere agregar
@@ -51,7 +32,15 @@ void BST::add(int &key, string ip){
             return;         //Como break pero se sale de la función
         }
         father = curr;
-        curr = (curr->getKey() > key) ? curr->getLeft() : curr->getRight();       //Se va a lugar a donde se tiene que agregar
+        if(curr->getKey() > key){
+            curr = curr->getLeft();
+        }
+        else if(curr->getKey() < key){
+            curr = curr->getRight()
+        }
+        else{
+            curr = (curr->getIp() > ip) ?  curr->getLeft() : curr->getRight(); //Compare Ip with long instead of strings
+        }
     }
     if (father == nullptr){
         root = new NodeT(key, ip);
