@@ -28,7 +28,7 @@ void cargaRegistros(BST &lista){
     string direccionIP;
     string razon;
     
-    int key;
+    int key = 1;
     string anterior;
     
     ifstream archivo("bitacoraOrdenada.txt");
@@ -46,11 +46,13 @@ void cargaRegistros(BST &lista){
         if(direccionIP == anterior){
             key++;
         }else{
-            lista.add(key,direccionIP);
+            lista.add(key,anterior);
             anterior = direccionIP; //anterior es ahora la current direcciónIP
-            key = 0;
+            key = 1;
         }
     }
+
+    lista.add(key,direccionIP);
     
     archivo.close();  
 }
@@ -58,7 +60,9 @@ void cargaRegistros(BST &lista){
 int main(){
     BST lista;
     cargaRegistros(lista);
-    
+    cout << endl;
+    lista.print();
+    cout << endl;    
     
     return 0;
 }

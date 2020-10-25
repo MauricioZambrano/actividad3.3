@@ -18,11 +18,14 @@ class BST{
         BST();
         ~BST();
         void add(int, string);
+        void print();
 
     private:
         NodeT *root;
         void destruye(NodeT*);
-};
+        void printFive(NodeT*, int&);
+        void inordenConv(NodeT*, int&);
+    };
 
 BST::BST(){
     root = nullptr;
@@ -52,6 +55,27 @@ void BST::add(int key, string ip){
     }
     else{
         (father->getKey() > key) ? father->setLeft(new NodeT(key, ip)) : father->setRight(new NodeT(key, ip));
+    }
+    
+}
+
+void BST::print(){
+    int cont = 1;
+    cout << "Cinco direcciones IP con la mayor cantidad de accesos:" << endl << endl;
+    inordenConv(root, cont);
+}
+
+void BST::printFive(NodeT *r, int &cont){
+    if(cont <= 5)
+        cout << cont << '.' << *r << endl;
+}
+
+void BST::inordenConv(NodeT *r, int &cont){
+    if(r != nullptr){
+        inordenConv(r->getRight(), cont);
+        printFive(r, cont);
+        cont++;
+        inordenConv(r->getLeft(), cont);
     }
 }
 
