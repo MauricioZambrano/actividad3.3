@@ -1,3 +1,24 @@
+/*
+ * Programación de estructuras de datos y algoritmos fundamentales
+ * Actividad 3.4 - Actividad integral de BST
+ * 
+ * Equipo 13
+ * 
+ * Fernando Doddoli Lankenau - A00827038
+ * Mauricio Eugenio Zambrano Díaz - A00827055
+ * Cristóbal Alberto Escamilla Sada - A00827074
+ * 
+ * 25 de octubre del 2020
+ */
+
+#include <fstream>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+#include "BST.h"
+
 // Carga los registros del archivo .txt a una BST almacenando objetos de tipo Registro
 // Complejidad: O(n)
 void cargaRegistros(BST &lista){
@@ -8,22 +29,20 @@ void cargaRegistros(BST &lista){
     string razon;
     
     int key;
-    long anterior;
+    string anterior;
     
     ifstream archivo("bitacoraOrdenada.txt");
     
     //First Run, hacemos anterior = direcciónIP
     archivo >> mes >> dia >> hora;
-    getline(archivo, direccionIP,":");
+    getline(archivo, direccionIP,':');
     getline(archivo, razon);
-    direccionIP = ipToLong(direccionIP);
     anterior = direccionIP;
     
     // Entramos al while para poder seguir comparando el anterior con la siguiente direcciónIP
     while(archivo >> mes >> dia >> hora){
-        getline(archivo, direccionIP,":");
+        getline(archivo, direccionIP,':');
         getline(archivo, razon);
-        direccionIP = ipToLong(direccionIP);
         if(direccionIP == anterior){
             key++;
         }else{
@@ -34,26 +53,6 @@ void cargaRegistros(BST &lista){
     }
     
     archivo.close();  
-}
-
-// Convierte la dirección ip (string) a long para facilitar la comparación entre los datos
-// Complejidad: O(n)
-long ipToLong(string ip){
-    int idx = 0;
-    long datoFinal= 0, dato = 0;
-    while (idx < ip.size()){
-        if (ip[idx]!= '.'){
-            dato = dato*10 + ip[idx]-'0';
-        }
-        else{
-        datoFinal = datoFinal*1000 + dato;
-        dato = 0;
-        }
-        idx++;
-    }
-    datoFinal = datoFinal*10000 + dato;
-    
-    return datoFinal;
 }
 
 int main(){
