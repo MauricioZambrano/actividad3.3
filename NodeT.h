@@ -82,6 +82,7 @@ long NodeT::ipToLong(string ip){
     return datoFinal;
 }
 
+// Complejidad: O(n)
 bool NodeT::operator>(string ip){
     return ipToLong(this->ip) > ipToLong(ip);
 }

@@ -19,8 +19,8 @@ using namespace std;
 
 #include "BST.h"
 
-// Carga los registros del archivo .txt a una BST almacenando objetos de tipo Registro
-// Complejidad: O(n)
+// Carga los registros del archivo .txt a un BST
+// Complejidad: O(n^3)
 void cargaRegistros(BST &lista){
     string mes;
     int dia;

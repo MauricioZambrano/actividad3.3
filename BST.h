@@ -25,16 +25,20 @@ class BST{
         void destruye(NodeT*);
         void printFive(NodeT*, int&);
         void inordenConv(NodeT*, int&);
-    };
+};
 
+// Constructor
 BST::BST(){
     root = nullptr;
 }
 
+// Destructor
 BST::~BST(){
     destruye(root);
 }
 
+
+// Complejidad: O(n^2)
 void BST::add(int key, string ip){
     NodeT *curr = root;
     NodeT *father = nullptr;
