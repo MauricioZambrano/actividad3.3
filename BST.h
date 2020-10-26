@@ -47,14 +47,17 @@ void BST::add(int key, string ip){
             curr = curr->getRight();
         }
         else{
-            curr = (*curr > ip) ?  curr->getLeft() : curr->getRight(); //Compare Ip with long instead of strings
+            curr = (*curr > ip) ?  curr->getRight() : curr->getLeft(); //Compare Ip with long instead of strings
         }
     }
     if (father == nullptr){
         root = new NodeT(key, ip);
     }
     else{
-        (father->getKey() > key) ? father->setLeft(new NodeT(key, ip)) : father->setRight(new NodeT(key, ip));
+        if(father->getKey() == key)
+            (*father > ip) ? father->setRight(new NodeT(key, ip)) : father->setLeft(new NodeT(key, ip));
+        else
+            (father->getKey() > key) ? father->setLeft(new NodeT(key, ip)) : father->setRight(new NodeT(key, ip));
     }
     
 }
