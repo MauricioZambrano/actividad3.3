@@ -25,16 +25,21 @@ class BST{
         void destruye(NodeT*);
         void printFive(NodeT*, int&);
         void inordenConv(NodeT*, int&);
-    };
+};
 
+//Constructor
 BST::BST(){
     root = nullptr;
 }
 
+//Destructor
 BST::~BST(){
     destruye(root);
 }
 
+//Agrega un nodo al arbol binario para que cumpla con todas las condiciones de un BST a base de key de forma descendiente
+//Ordena por IP si los keys son igual de forma ascendiente
+//Complejidad: O(n^2)
 void BST::add(int key, string ip){
     NodeT *curr = root;
     NodeT *father = nullptr;
@@ -50,6 +55,7 @@ void BST::add(int key, string ip){
             curr = (*curr > ip) ?  curr->getRight() : curr->getLeft(); //Compare Ip with long instead of strings
         }
     }
+
     if (father == nullptr){
         root = new NodeT(key, ip);
     }
@@ -59,20 +65,25 @@ void BST::add(int key, string ip){
         else
             (father->getKey() > key) ? father->setLeft(new NodeT(key, ip)) : father->setRight(new NodeT(key, ip));
     }
-    
 }
 
+//Llama la función de inorden converso e da indicaciones por la terminal a usuario
+//Complejidad: O(n)
 void BST::print(){
     int cont = 1;
     cout << "Cinco direcciones IP con la mayor cantidad de accesos:" << endl << endl;
     inordenConv(root, cont);
 }
 
+//Imprime los primeros 5 datos del inorden conversa
+//Complejidad: O(1)
 void BST::printFive(NodeT *r, int &cont){
     if(cont <= 5)
         cout << cont << '.' << *r << endl;
 }
 
+//Itera a través del arbol en una forma inorden conversa
+//Complejidad: O(n)
 void BST::inordenConv(NodeT *r, int &cont){
     if(r != nullptr){
         inordenConv(r->getRight(), cont);
